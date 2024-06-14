@@ -67,6 +67,8 @@ export type ExtractedRouteMethod<
     ? Lowercase<Exclude<O["method"], undefined>>
     : "get";
 
+export type Fetch = typeof globalThis.fetch;
+
 export interface $Fetch<
   DefaultT = unknown,
   DefaultR extends NitroFetchRequest = NitroFetchRequest,
@@ -89,6 +91,7 @@ export interface $Fetch<
   ): Promise<
     FetchResponse<TypedInternalResponse<R, T, ExtractedRouteMethod<R, O>>>
   >;
+  native: Fetch;
   create<T = DefaultT, R extends NitroFetchRequest = DefaultR>(
     defaults: FetchOptions
   ): $Fetch<T, R>;
